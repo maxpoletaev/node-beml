@@ -46,7 +46,7 @@ module.exports = function($this) {
 		bem.setClasses($this, {
 			block: $this.data('block'),
 			elem: $this.data('elem'),
-			mod: ajson($this.attr('mod'))
+			mod: ajson.parse($this.attr('mod'))
 		});
 
 		$this.data('mod', $this.attr('mod'));
@@ -55,7 +55,7 @@ module.exports = function($this) {
 
 	// Mix processing
 	if ($this.attr('mix') !== undefined) {
-		var mix = ajson($this.attr('mix'));
+		var mix = ajson.parse($this.attr('mix'));
 		bem.setClasses($this, mix);
 		$this.removeAttr('mix');
 	}

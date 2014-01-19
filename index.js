@@ -1,3 +1,4 @@
+var path = require('path');
 var dom = require('jsdom');
 var vow = require('vow');
 var fs = require('fs');
@@ -22,11 +23,11 @@ module.exports = {
 				return defer.reject(err);
 			}
 
-			var processors = fs.readdirSync('processors');
+			var processors = fs.readdirSync(path.resolve(__dirname, 'processors'));
 			var $ = require('jquery')(window);
 
 			for (var i in processors) {
-				var processor = require('../processors/' + processors[i]);
+				var processor = require(path.resolve(__dirname, 'processors/' + processors[i]));
 				
 				$('*').each(function() {
 					var $this = $(this);
