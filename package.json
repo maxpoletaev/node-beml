@@ -1,0 +1,20 @@
+{
+  "name": "beml",
+  "version": "0.0.0",
+  "repository": "https://github.com/ethernet1/node-beml",
+  "description": "HTML preprocessor for BEM",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "jquery": "~1.11.0-pre",
+    "jsdom": "~0.8.10",
+    "vow": "~0.4.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "mocha --recursive test"
+  },
+  "author": "Maxim Shkalin <dt5@bk.ru>",
+  "license": "MIT"
+}
