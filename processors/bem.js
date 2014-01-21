@@ -34,12 +34,6 @@ module.exports = function($this) {
 		$this.removeAttr('elem');
 		$this.addClass(elem);
 	}
-	else {
-		if ($this.parent()) {
-			var elem = $this.parent().data('elem');
-			$this.data('elem', elem);
-		}
-	}
 
 	// Modifier processing
 	if ($this.attr('mod') !== undefined) {
