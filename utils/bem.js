@@ -7,6 +7,11 @@ module.exports = {
 	},
 
 	setClasses: function($this, selector) {
+		$this.addClass(this.buildSelector({
+			block: selector.block,
+			elem: selector.elem
+		}));
+		
 		if (selector.mod !== undefined) {
 			for (modKey in selector.mod) {
 				var modVal = selector.mod[modKey];
@@ -17,12 +22,6 @@ module.exports = {
 					mod: modKey+':'+modVal
 				}));
 			}
-		}
-		else {
-			$this.addClass(this.buildSelector({
-				block: selector.block,
-				elem: selector.elem
-			}));
 		}
 	},
 
