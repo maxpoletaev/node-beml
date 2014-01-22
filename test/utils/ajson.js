@@ -1,7 +1,7 @@
 var ajson = require('../../utils/ajson');
 var assert = require('assert');
 
-describe('Parsing', function() {
+describe('Parsing JSON', function() {
 	
 	it('short version', function() {
 		var test = 'key: val, key2: val2';

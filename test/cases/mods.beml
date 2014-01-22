@@ -1,0 +1,9 @@
+<html>
+  <body>
+    <div block="b-block" mod="key1:val1, key2:val2">
+      <div elem="name" mod="key1:val1, key2:val2"></div>
+    </div>
+    <div block="b-block" elem="name" mod="key:val"></div>
+    <div mod="orpah:yes"></div>
+  </body>
+</html>

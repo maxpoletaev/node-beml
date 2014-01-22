@@ -1,0 +1,7 @@
+<html>
+  <body>
+    <div block="b-block">
+      <div block="b-inner-block"></div>
+    </div>
+  </body>
+</html>

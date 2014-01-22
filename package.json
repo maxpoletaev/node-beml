@@ -12,9 +12,12 @@
     "jsdom": "~0.8.10",
     "vow": "~0.4.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "mocha": "*"
+  },
   "scripts": {
-    "test": "mocha --recursive test"
+    "test": "mocha -R spec && npm run-script test-utils",
+    "test-utils": "mocha -R spec test/utils"
   },
   "author": "Maxim Shkalin <dt5@bk.ru>",
   "license": "MIT"
