@@ -5,41 +5,41 @@ var fs = require('fs');
 
 module.exports = {
 
-	process: function(html, callback) {		
-		return this._parse(html).then(
-			function(html) {
-				callback(null, html);
-			},
-			function(err) {
-				callback(err);
-			}
-		);
-	},
+  process: function(html, callback) {
+    return this._parse(html).then(
+      function(html) {
+        callback(null, html);
+      },
+      function(err) {
+        callback(err);
+      }
+    );
+  },
 
-	_parse: function(html) {
-		var defer = vow.defer();
-		dom.env(html, [], function(err, window) {
-			if (err) {
-				return defer.reject(err);
-			}
+  _parse: function(html) {
+    var defer = vow.defer();
+    dom.env(html, [], function(err, window) {
+      if (err) {
+        return defer.reject(err);
+      }
 
-			var processors = fs.readdirSync(path.resolve(__dirname, 'processors'));
-			var $ = require('jquery')(window);
+      var processors = fs.readdirSync(path.resolve(__dirname, 'processors'));
+      var $ = require('jquery')(window);
 
-			for (var i in processors) {
-				var processor = require(path.resolve(__dirname, 'processors/' + processors[i]));
-				
-				$('*').each(function() {
-					var $this = $(this);
-					processor($this);
-				});
+      for (var i in processors) {
+        var processor = require(path.resolve(__dirname, 'processors/' + processors[i]));
+        
+        $('*').each(function() {
+          var $this = $(this);
+          processor($this);
+        });
 
-				if (i == processors.length-1) {
-					defer.resolve(window.document.innerHTML);
-				}
-			}
-		});
-		return defer.promise();
-	}
+        if (i == processors.length-1) {
+          defer.resolve(window.document.innerHTML);
+        }
+      }
+    });
+    return defer.promise();
+  }
 
-}
+};
