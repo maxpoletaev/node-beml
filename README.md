@@ -1,7 +1,7 @@
 BEML [![Build Status][build]][build-link]
 =================================================================================
-[build]: https://travis-ci.org/ethernet1/node-beml.png?branch=master
-[build-link]: https://travis-ci.org/ethernet1/node-beml
+[build]: https://travis-ci.org/zenwalker/node-beml.png?branch=master
+[build-link]: https://travis-ci.org/zenwalker/node-beml
 
 This is simple HTML preprocessor (or postprocessor) which extend HTML syntax for comfortable working with bem html.
 
