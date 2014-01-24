@@ -1,6 +1,6 @@
 {
   "name": "beml",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "repository": "https://github.com/ethernet1/node-beml",
   "description": "HTML preprocessor for BEM",
   "main": "./index.js",
@@ -8,9 +8,7 @@
     "test": "test"
   },
   "dependencies": {
-    "jquery": "~1.11.0-pre",
-    "jsdom": "~0.8.10",
-    "vow": "~0.4.1"
+    "cheerio": "~0.13.1"
   },
   "devDependencies": {
     "mocha": "*"

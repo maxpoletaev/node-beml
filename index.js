@@ -1,45 +1,28 @@
+var cheerio = require('cheerio');
 var path = require('path');
-var dom = require('jsdom');
-var vow = require('vow');
 var fs = require('fs');
 
 module.exports = {
 
   process: function(html, callback) {
-    return this._parse(html).then(
-      function(html) {
-        callback(null, html);
-      },
-      function(err) {
-        callback(err);
-      }
-    );
-  },
+    var processors = fs.readdirSync(path.resolve(__dirname, 'processors'));
+    var $ = cheerio.load(html);
 
-  _parse: function(html) {
-    var defer = vow.defer();
-    dom.env(html, [], function(err, window) {
-      if (err) {
-        return defer.reject(err);
-      }
+    for (var i in processors) {
+      var processor = require(path.resolve(__dirname, 'processors/' + processors[i]));
 
-      var processors = fs.readdirSync(path.resolve(__dirname, 'processors'));
-      var $ = require('jquery')(window);
+      $('*').each(function() {
+        processor( $(this) );
+      });
 
-      for (var i in processors) {
-        var processor = require(path.resolve(__dirname, 'processors/' + processors[i]));
-        
-        $('*').each(function() {
-          var $this = $(this);
-          processor($this);
-        });
-
-        if (i == processors.length-1) {
-          defer.resolve(window.document.innerHTML);
+      if (i == processors.length-1) {
+        if (typeof callback == 'function') {
+          // @deprecated
+          callback(null, $.html());
         }
+        return $.html();
       }
-    });
-    return defer.promise();
+    }
   }
 
 };

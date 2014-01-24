@@ -13,11 +13,8 @@ cases.forEach(function(test) {
   var tmpl = fs.readFileSync('test/cases/' + test + '.beml');
   var result = fs.readFileSync('test/cases/' + test + '.html');
   
-  it(test, function(done) {
-    beml.process(tmpl+'', function(err, html) {
-      assert.equal(html, result+'');
-      done();
-    })
-    .done(null, done);
+  it(test, function() {
+    var html = beml.process(tmpl+'');
+    assert.equal(html, result+'');
   });
 });

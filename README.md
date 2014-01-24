@@ -44,11 +44,9 @@ How to use
 
 ```
 var beml = require('beml');
-var template = '<div block="b-block" mod="size:big"></div>'
 
-beml.process(template, function(err, html) {
-	console.log(html);
-});
+var html = beml.process('<div block="b-block" mod="size:big"></div>');
+console.log(html);
 
 ```
 
