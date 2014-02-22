@@ -63,25 +63,26 @@ Syntax reference
 
 ### Elements
 
-```
-<div elem="name"></div> <!-- element of parent block -->
+```html
+<div elem="name"></div>                  <!-- element of parent block -->
 <div block="b-animal" elem="name"></div> <!-- element of specific block -->
 ```
 
 ### Modifiers
 
-```
+```html
 <div block="b-block" mod="size:big, color:red"></div>
 ```
 
 ### Mixes
 
-```
-<div class="b-block" mix="block:b-mix, elem:elem">
+```html
+<div block="b-block" mix="block:b-mix, elem:elem"></div>
 ```
 
 For complex values you can use pseudo JSON syntax:
 
-```
-<div class="b-block" mix="{block:b-mix, mod:{ mod1:val1, mod2:val2 }}">
+```html
+<div block="b-block" mix="{block:b-mix, mod:{ mod1:val1, mod2:val2 }}"></div>
+<div block="b-block" mix="{block:b-mix-1},{block:b-mix-2}"></div>
 ```
