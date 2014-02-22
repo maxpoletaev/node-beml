@@ -1,6 +1,6 @@
 {
   "name": "beml",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "repository": "https://github.com/ethernet1/node-beml",
   "description": "HTML preprocessor for BEM",
   "main": "./index.js",
