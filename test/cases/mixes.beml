@@ -4,5 +4,6 @@
     <div block="b-block" elem="elem" mix="block: b-mix"></div>
     <div block="b-block" mix="block: b-mix, elem: elem"></div>
     <div block="b-block" mix="block: b-mix, elem: elem, mod: {key:val}"></div>
+    <div block="b-block" mix="{block: b-mix-1}, {block: b-mix-2}"></div>
   </body>
 </html>

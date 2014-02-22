@@ -61,8 +61,16 @@ module.exports = function($this) {
    */
 
   if ($this.attr('mix') !== undefined) {
-    var mix = ajson.parse($this.attr('mix'));
-    bem.setClasses($this, mix);
+    var mixes = ajson.parse($this.attr('mix'));
+
+    if (Array.isArray(mixes)) {
+      mixes.forEach(function(mix) {
+        bem.setClasses($this, mix);
+      });
+    } else {
+      bem.setClasses($this, mixes);
+    }
+    
     $this.removeAttr('mix');
   }
 
