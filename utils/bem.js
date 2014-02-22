@@ -1,11 +1,13 @@
+
 module.exports = {
 
-  config: {
-    elemPrefix: '__',
-    modPrefix: '_',
-    modDlmtr: '_'
-  },
-
+  /**
+   * Add classes to element from bem selector.
+   * @public
+   *
+   * @param {Object} $this
+   * @param {Object} selector
+   */
   setClasses: function($this, selector) {
     $this.addClass(this.buildSelector({
       block: selector.block,
@@ -25,35 +27,77 @@ module.exports = {
     }
   },
 
+  /**
+   * Build native string selector from bem selector.
+   * @public
+   *
+   * @param {Object} selector
+   * @return {String}
+   */
   buildSelector: function(selector) {
     var result = null;
     
     if (selector.block !== undefined) {
-      result = this._buildBlockClass(selector.block);
+      result = buildBlockClass(selector.block);
 
       if (selector.elem !== undefined) {
-        result = this._buildElemClass(result, selector.elem);
+        result = buildElemClass(result, selector.elem);
       }
 
       if (selector.mod !== undefined) {
         var mod = selector.mod.split(':');
-        result = this._buildModClass(result, mod[0], mod[1]);
+        result = buildModClass(result, mod[0], mod[1]);
       }
     }
 
     return result? result : selector;
-  },
-
-  _buildBlockClass: function(blockName) {
-    return blockName;
-  },
-
-  _buildElemClass: function(blockClass, elemName) {
-    return blockClass + this.config.elemPrefix + elemName;
-  },
-
-  _buildModClass: function(baseClass, modKey, modVal) {
-    return baseClass + this.config.modPrefix + modKey + this.config.modDlmtr + modVal;
   }
 
 };
+
+/**
+ * Default configuration.
+ * @type {Object}
+ * @private
+ */
+var config = {
+  elemPrefix: '__',
+  modPrefix: '_',
+  modDlmtr: '_'
+};
+
+/**
+ * Build block class name.
+ * @private
+ *
+ * @param {String} blockName
+ * @return {String}
+ */
+function buildBlockClass(blockName) {
+  return blockName;
+}
+
+/**
+ * Build element class name.
+ * @private
+ *
+ * @param {String} blockClass
+ * @param {String} elemName
+ * @return {String}
+ */
+function buildElemClass(blockClass, elemName) {
+  return blockClass + config.elemPrefix + elemName;
+}
+
+/**
+ * Build modifier classname.
+ * @private
+ *
+ * @param {String} baseClass
+ * @param {String} modKey
+ * @param {String} modVal
+ * @return {String}
+ */
+function buildModClass(baseClass, modKey, modVal) {
+  return baseClass + config.modPrefix + modKey + config.modDlmtr + modVal;
+}

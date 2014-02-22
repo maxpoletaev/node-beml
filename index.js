@@ -4,6 +4,14 @@ var fs = require('fs');
 
 module.exports = {
 
+  /**
+   * Process template string.
+   * @public
+   *
+   * @param {String} html
+   * @param {Function} [callback]
+   * @return {String}
+   */
   process: function(html, callback) {
     var processors = fs.readdirSync(path.resolve(__dirname, 'processors'));
     var $ = cheerio.load(html);

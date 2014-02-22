@@ -3,7 +3,10 @@ var ajson = require('../utils/ajson');
 
 module.exports = function($this) {
 
-  // Block processing
+  /**
+   * Block processing.
+   */
+
   if ($this.attr('block') !== undefined) {
     var block = bem.buildSelector({
       block: $this.attr('block')
@@ -23,7 +26,10 @@ module.exports = function($this) {
     }
   }
 
-  // Element processing
+  /**
+   * Element processing.
+   */
+
   if ($this.attr('elem') !== undefined) {
     var elem = bem.buildSelector({
       block: $this.data('block'),
@@ -35,7 +41,10 @@ module.exports = function($this) {
     $this.addClass(elem);
   }
 
-  // Modifier processing
+  /**
+   * Modifier processing.
+   */
+
   if ($this.attr('mod') !== undefined) {
     bem.setClasses($this, {
       block: $this.data('block'),
@@ -47,7 +56,10 @@ module.exports = function($this) {
     $this.removeAttr('mod');
   }
 
-  // Mix processing
+  /**
+   * Mix processing.
+   */
+
   if ($this.attr('mix') !== undefined) {
     var mix = ajson.parse($this.attr('mix'));
     bem.setClasses($this, mix);
