@@ -1,30 +1,26 @@
-BEML [![Build Status][build]][build-link]
-=================================================================================
+# BEML [![Build Status][build]][build-link]
+
 [build]: https://travis-ci.org/zenwalker/node-beml.png?branch=master
 [build-link]: https://travis-ci.org/zenwalker/node-beml
 
-This is simple HTML preprocessor (or postprocessor) which extend HTML syntax for comfortable working with bem html.
+This is simple HTML preprocessor (or postprocessor) which extend HTML syntax for
+comfortable working with bem html.
 
+## Why?
 
-Why?
-----
+Raw HTML in BEM style is difficult to read. Also, I (and not only I) like HTML
+and don't want to use BEMHTML, BEMJSON and others specific technologies.
 
-Raw HTML in BEM style is difficult to read. Also, I (and not only I) like HTML and don't want to use BEMHTML, BEMJSON and others specific technologies.
-
-
-Targets
--------
+## Targets
 
 * Maximum simplicity - HTML syntax, without translate from another language.
 * Possibility port to other languages (e.g. PHP or Python).
 * Joint work with template engines.
 * Ease of use.
 
+## Sample
 
-Sample
-------
-
-```
+```html
 <div block="b-animals">
   <div elem="cat" mod="size:big, color:red"></div>
 </div>
@@ -32,28 +28,22 @@ Sample
 
 translated to
 
-```
+```html
 <div class="b-animals">
   <div class"b-animals__cat b-animals__cat_size_big b-animals__cat_color_red"></div>
 </div>
 ```
 
+## How to use
 
-How to use
-----------
-
-```
+```javascript
 var beml = require('beml');
 
-var html = beml.process('<div block="b-block" mod="size:big"></div>');
+var html = beml('<div block="b-block" mod="size:big"></div>');
 console.log(html);
-
 ```
 
-
-Syntax reference
-----------------
-
+## Syntax reference
 
 ### Blocks
 
