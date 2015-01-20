@@ -1,14 +1,14 @@
 {
   "name": "beml",
-  "version": "0.1.1",
-  "repository": "https://github.com/ethernet1/node-beml",
+  "version": "1.0.0",
+  "repository": "https://github.com/zenwalker/node-beml",
   "description": "HTML preprocessor for BEM",
   "main": "./index.js",
   "directories": {
     "test": "test"
   },
   "dependencies": {
-    "cheerio": "~0.13.1"
+    "cheerio": "^0.18.0"
   },
   "devDependencies": {
     "mocha": "*"
@@ -17,6 +17,6 @@
     "test": "mocha -R spec && npm run-script test-utils",
     "test-utils": "mocha -R spec test/utils"
   },
-  "author": "Maxim Shkalin <dt5@bk.ru>",
+  "author": "Maxim Poletaev <zenwalker2@gmail.com>",
   "license": "MIT"
 }
