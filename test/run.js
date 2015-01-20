@@ -12,9 +12,9 @@ var cases = fs.readdirSync('test/cases').filter(function(file) {
 cases.forEach(function(test) {
   var tmpl = fs.readFileSync('test/cases/' + test + '.beml');
   var result = fs.readFileSync('test/cases/' + test + '.html');
-  
+
   it(test, function() {
-    var html = beml.process(tmpl+'');
+    var html = beml(tmpl.toString());
     assert.equal(html, result+'');
   });
 });

@@ -1,4 +1,4 @@
-var bem = require('../../utils/bem');
+var bem = require('../../utils/bem')();
 var assert = require('assert');
 
 describe('Building selector', function() {

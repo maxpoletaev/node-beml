@@ -1,36 +1,21 @@
 var cheerio = require('cheerio');
-var path = require('path');
-var fs = require('fs');
+var BEML = require('./beml');
+var util = require('util');
 
-module.exports = {
+function run(html, config) {
+  var $ = cheerio.load(html);
+  var beml = new BEML(config);
 
-  /**
-   * Process template string.
-   * @public
-   *
-   * @param {String} html
-   * @param {Function} [callback]
-   * @return {String}
-   */
-  process: function(html, callback) {
-    var processors = fs.readdirSync(path.resolve(__dirname, 'processors'));
-    var $ = cheerio.load(html);
+  $('*').each(function() {
+    var $this = $(this);
+    beml.run($this);
+  });
 
-    for (var i in processors) {
-      var processor = require(path.resolve(__dirname, 'processors/' + processors[i]));
+  return $.html();
+}
 
-      $('*').each(function() {
-        processor( $(this) );
-      });
+run.process = util.deprecate(function(html, config) {
+  return run(html, config);
+}, '`beml.process()` is deprecated, use just `beml()`');
 
-      if (i == processors.length-1) {
-        if (typeof callback == 'function') {
-          // @deprecated
-          callback(null, $.html());
-        }
-        return $.html();
-      }
-    }
-  }
-
-};
+module.exports = run;
