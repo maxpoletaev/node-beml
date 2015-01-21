@@ -39,7 +39,13 @@ translated to
 ```javascript
 var beml = require('beml');
 
-var html = beml('<div block="b-block" mod="size:big"></div>');
+var config = {
+  elemPrefix: '__',
+  modPrefix: '_',
+  modDlmtr: '_'
+};
+
+var html = beml('<div block="b-block" mod="size:big"></div>', config);
 console.log(html);
 ```
 
@@ -47,7 +53,7 @@ console.log(html);
 
 ### Blocks
 
-```
+```html
 <div block="b-animal"></div>
 ```
 

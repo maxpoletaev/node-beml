@@ -46,9 +46,14 @@
 ```javascript
 var beml = require('beml');
 
-var html = beml('<div block="b-block" mod="size:big"></div>');
-console.log(html);
+var config = {
+  elemPrefix: '__',
+  modPrefix: '_',
+  modDlmtr: '_'
+};
 
+var html = beml('<div block="b-block" mod="size:big"></div>', config);
+console.log(html);
 ```
 
 ## Синтаксис
