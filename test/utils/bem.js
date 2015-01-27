@@ -1,5 +1,8 @@
-var bem = require('../../utils/bem')();
+var _bem = require('../../utils/bem');
 var assert = require('assert');
+
+var bem = _bem();
+var bemCustom = _bem({ elemPrefix: '_', modPrefix: '--', modDlmtr: '-' });
 
 describe('Building selector', function() {
 
@@ -27,6 +30,13 @@ describe('Building selector', function() {
   it('for element modifier', function() {
     var test = bem.buildSelector({ block: 'b-block', elem: 'elem', mod: 'key:val' });
     var result = 'b-block__elem_key_val';
+
+    assert.equal(test, result);
+  });
+
+  it('with custom config', function() {
+    var test = bemCustom.buildSelector({ block: 'b-block', elem: 'elem', mod: 'key:val' });
+    var result = 'b-block_elem--key-val';
 
     assert.equal(test, result);
   });
