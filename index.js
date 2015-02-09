@@ -3,7 +3,10 @@ var BEML = require('./beml');
 var util = require('util');
 
 function run(html, config) {
-  var $ = cheerio.load(html);
+  var $ = cheerio.load(html, {
+    decodeEntities: false
+  });
+
   var beml = new BEML(config);
 
   $('*').each(function() {

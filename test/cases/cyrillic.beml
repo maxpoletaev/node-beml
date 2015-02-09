@@ -1,0 +1,4 @@
+<div block="article">
+  <p elem="text">текст на кириллице</p>
+  <a elem="link" href="#!" title="ссылка в атрибуте">ссылка</a>
+</div>

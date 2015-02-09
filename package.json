@@ -1,6 +1,6 @@
 {
   "name": "beml",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "repository": "https://github.com/zenwalker/node-beml",
   "description": "HTML preprocessor for BEM",
   "main": "./index.js",
