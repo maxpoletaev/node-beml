@@ -5,6 +5,24 @@ function BEML(config) {
   this.bem = require('./utils/bem')(config);
 }
 
+function sortAttrs(attrs) {
+  if (attrs.class) {
+    var newAttrs = {
+      class: attrs.class
+    };
+
+    for (key in attrs) {
+      if (attrs.hasOwnProperty(key)) {
+        if (key != 'class') newAttrs[key] = attrs[key];
+      }
+    }
+
+    return newAttrs;
+  }
+
+  return attrs;
+}
+
 BEML.prototype.run = function($this) {
 
   /**
@@ -78,5 +96,7 @@ BEML.prototype.run = function($this) {
 
     $this.removeAttr('mix');
   }
+
+  $this[0].attribs = sortAttrs($this[0].attribs);
 
 };

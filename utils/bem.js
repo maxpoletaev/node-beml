@@ -8,7 +8,6 @@ module.exports = function(config) {
     modDlmtr: '_'
   }, config || {});
 
-
   function buildBlockClass(blockName) {
     return blockName;
   }
