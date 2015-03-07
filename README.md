@@ -6,6 +6,9 @@
 This is simple HTML preprocessor (or postprocessor) which extend HTML syntax for
 comfortable working with bem html.
 
+Also available plugins for [Gulp](https://github.com/zenwalker/gulp-beml) and
+[Grunt](https://github.com/zenwalker/grunt-beml).
+
 ## Why?
 
 Raw HTML in BEM style is difficult to read. Also, I (and not only I) like HTML
