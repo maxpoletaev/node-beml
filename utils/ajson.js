@@ -25,15 +25,11 @@ module.exports = {
       return JSON.parse(output);
     }
     else {
-      output = (~input.indexOf(':')) ? {} : [];
+      output = {};
 
       input.split(',').forEach(function(sect) {
         var kv = sect.split(':');
-        if (kv.length > 1) {
-          output[kv[0].trim()] = kv[1].trim();
-        } else {
-          output.push(sect.trim());
-        }
+        output[kv[0].trim()] = (kv.length > 1) ? kv[1].trim() : undefined;
       });
 
       return output;

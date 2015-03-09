@@ -6,6 +6,7 @@
 
     <div block="b-block" mod="binary"></div>
     <div block="b-block" mod="binary, binary2"></div>
+    <div block="b-block" mod="binary, size:large"></div>
 
     <div mod="orpah:yes"></div>
   </body>

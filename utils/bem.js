@@ -51,11 +51,12 @@ module.exports = function(config) {
         else {
           for (modKey in selector.mod) {
             var modVal = selector.mod[modKey];
+            var mod = (modVal) ? modKey+':'+modVal : modKey;
 
             $this.addClass(this.buildSelector({
               block: selector.block,
               elem: selector.elem,
-              mod: modKey+':'+modVal
+              mod: mod
             }));
           }
         }
