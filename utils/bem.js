@@ -31,7 +31,7 @@ module.exports = function(config) {
         elem: selector.elem
       }));
 
-      if (selector.mod !== undefined) {
+      if (selector.mod) {
         if (typeof selector.mod == 'string') {
           $this.addClass(that.buildSelector({
             block: selector.block,
@@ -66,14 +66,14 @@ module.exports = function(config) {
     buildSelector: function(selector) {
       var result = null;
 
-      if (selector.block !== undefined) {
+      if (selector.block) {
         result = buildBlockClass(selector.block);
 
-        if (selector.elem !== undefined) {
+        if (selector.elem) {
           result = buildElemClass(result, selector.elem);
         }
 
-        if (selector.mod !== undefined) {
+        if (selector.mod) {
           if (~selector.mod.indexOf(':')) {
             var mod = selector.mod.split(':');
             result = buildModClass(result, mod[0], mod[1])

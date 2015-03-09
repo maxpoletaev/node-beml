@@ -37,7 +37,7 @@ BEML.prototype.run = function($this) {
     $this.data('block', $this.attr('block'));
     $this.removeAttr('block');
 
-    if ($this.attr('elem') == undefined) {
+    if (!$this.attr('elem')) {
       $this.addClass(block);
     }
   }
