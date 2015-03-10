@@ -57,31 +57,77 @@ console.log(html);
 ### Blocks
 
 ```html
-<div block="b-animal"></div>
+<div block="animals">
+  <div block="unicorn"></div>
+</div>
+```
+
+```html
+<div class="animals">
+  <div class="unicorn"></div>
+</div>
 ```
 
 ### Elements
 
 ```html
-<div elem="name"></div>                  <!-- element of parent block -->
-<div block="b-animal" elem="name"></div> <!-- element of specific block -->
+<div block="animals">
+  <div elem="item">
+    <div elem="item-name"></div>
+  </div>
+</div>
+```
+
+```html
+<div class="animals">
+  <div class="animals__item">
+    <div class="animals__item-name"></div>
+  </div>
+</div>
 ```
 
 ### Modifiers
 
 ```html
-<div block="b-block" mod="size:big, color:red"></div>
+<div block="animals">
+  <div block="unicorn" mod="size:large, female"></div>
+</div>
+```
+
+```html
+<div class="animals">
+  <div class="unicorn inicorn_size_large unicorn_female"></div>
+</div>
 ```
 
 ### Mixes
 
 ```html
-<div block="b-block" mix="block:b-mix, elem:elem"></div>
+<div block="animals">
+  <div elem="item" mix="block:unicorn, mod: [large, female]">
+    <div block="unicorn" elem="photo"></div>
+    <div elem="item-name"></div>
+  </div>
+</div>
+```
+
+```html
+<div class="animals">
+  <div class="animals__item unicorn unicorn_large unicorn_female">
+    <div class="unicorn__photo"></div>
+    <div class="animals__item-name"></div>
+  </div>
+</div>
 ```
 
 For complex values you can use pseudo JSON syntax:
 
 ```html
-<div block="b-block" mix="{block:b-mix, mod:{ mod1:val1, mod2:val2 }}"></div>
-<div block="b-block" mix="{block:b-mix-1},{block:b-mix-2}"></div>
+<div block="unicorn" mix="block:animals, elem:item, mod:{size:large,gender:female}"></div>
+<div block="unicorn" mix="{block:b-mix-1}, {block:b-mix-2, mod:[mod1, mod2]}"></div>
+```
+
+```html
+<div class="unicorn animals__item animals__item_size_large animals__item_gender_female"></div>
+<div class="unicorn b-mix-1 b-mix-2 b-mix-2_mod1 b-mix-2_mod_2"></div>
 ```
