@@ -1,5 +1,4 @@
 var ajson = require('./utils/ajson');
-module.exports = BEML;
 
 function BEML(config) {
   this.bem = require('./utils/bem')(config);
@@ -100,3 +99,5 @@ BEML.prototype.run = function($this) {
   $this[0].attribs = sortAttrs($this[0].attribs);
 
 };
+
+module.exports = BEML;

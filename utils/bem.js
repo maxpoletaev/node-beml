@@ -83,7 +83,7 @@ module.exports = function(config) {
         }
       }
 
-      return result? result : selector;
+      return result ? result : selector;
     }
   };
 };
