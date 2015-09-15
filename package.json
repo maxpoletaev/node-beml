@@ -1,6 +1,6 @@
 {
   "name": "beml",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "repository": "https://github.com/zenwalker/node-beml",
   "description": "HTML preprocessor for BEM",
   "main": "./index.js",
@@ -8,7 +8,7 @@
     "test": "test"
   },
   "dependencies": {
-    "cheerio": "^0.18.0",
+    "cheerio": "^0.19.0",
     "extend": "^2.0.0"
   },
   "devDependencies": {
