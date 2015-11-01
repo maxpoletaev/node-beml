@@ -11,7 +11,7 @@ Also available plugins for [Gulp](https://github.com/zenwalker/gulp-beml),
 
 ## Why?
 
-Raw HTML in BEM style is difficult to read. Also, I (and not only I) like HTML
+Raw HTML in BEM style is difficult to read. Also, I (and not only I) love HTML
 and don't want to use BEMHTML, BEMJSON and others specific technologies.
 
 ## Targets
