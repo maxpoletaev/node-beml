@@ -6,8 +6,8 @@
 This is simple HTML preprocessor (or postprocessor) which extend HTML syntax for
 comfortable working with bem html.
 
-Also available plugins for [Gulp](https://github.com/zenwalker/gulp-beml) and
-[Grunt](https://github.com/zenwalker/grunt-beml).
+Also available plugins for [Gulp](https://github.com/zenwalker/gulp-beml),
+[Grunt](https://github.com/zenwalker/grunt-beml) and [Broccoli](https://github.com/Inzephirum/broccoli-beml).
 
 ## Why?
 

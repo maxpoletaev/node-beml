@@ -5,8 +5,8 @@
 
 Это небольшой HTML-препроцессор или постпроцессор, облегчающий написание BEM-разметки, путем расширения HTML синтаксиса.
 
-Также доступны плагины для [Gulp](https://github.com/zenwalker/gulp-beml) и
-[Grunt](https://github.com/zenwalker/grunt-beml).
+Также доступны плагины для [Gulp](https://github.com/zenwalker/gulp-beml),
+[Grunt](https://github.com/zenwalker/grunt-beml) и [Broccoli](https://github.com/Inzephirum/broccoli-beml).
 
 ## Зачем?
 
