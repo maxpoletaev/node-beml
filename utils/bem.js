@@ -1,13 +1,4 @@
-var extend = require('extend');
-
-module.exports = function(config) {
-
-  var config = extend({
-    elemPrefix: '__',
-    modPrefix: '_',
-    modDlmtr: '_'
-  }, config || {});
-
+module.exports = function(config, escaper) {
   function buildBlockClass(blockName) {
     return blockName;
   }
@@ -22,18 +13,26 @@ module.exports = function(config) {
     return className;
   }
 
+  function addClass($node, className) {
+    if (!className) return;
+    var currentValue = $node.attr('class').trim();
+    if (~currentValue.indexOf(className)) return;
+    if (currentValue.length > 0) currentValue += ' ';
+    $node.attr('class', currentValue + className);
+  }
+
   return {
     setClasses: function($this, selector) {
       var that = this;
 
-      $this.addClass(this.buildSelector({
+      addClass($this, this.buildSelector({
         block: selector.block,
         elem: selector.elem
       }));
 
       if (selector.mod) {
         if (typeof selector.mod == 'string') {
-          $this.addClass(that.buildSelector({
+          addClass($this, that.buildSelector({
             block: selector.block,
             elem: selector.elem,
             mod: selector.mod
@@ -41,7 +40,7 @@ module.exports = function(config) {
         }
         else if (Array.isArray(selector.mod)) {
           selector.mod.forEach(function(mod) {
-            $this.addClass(that.buildSelector({
+            addClass($this, that.buildSelector({
               block: selector.block,
               elem: selector.elem,
               mod: mod
@@ -51,9 +50,9 @@ module.exports = function(config) {
         else {
           for (modKey in selector.mod) {
             var modVal = selector.mod[modKey];
-            var mod = (modVal) ? modKey+':'+modVal : modKey;
+            var mod = (modVal) ? modKey + ':' + modVal : modKey;
 
-            $this.addClass(this.buildSelector({
+            addClass($this, this.buildSelector({
               block: selector.block,
               elem: selector.elem,
               mod: mod
@@ -83,7 +82,14 @@ module.exports = function(config) {
         }
       }
 
-      return result ? result : selector;
+      if (result) {
+        if (escaper) {
+          return escaper.decode(result);
+        }
+        return result;
+      }
+
+      return null;
     }
   };
 };

@@ -1,7 +1,110 @@
+var extend = require('extend');
 var ajson = require('./utils/ajson');
+var escaping = require('./utils/escaping');
 
 function BEML(config) {
-  this.bem = require('./utils/bem')(config);
+  this.config = extend({
+    elemPrefix: '__',
+    modPrefix: '_',
+    modDlmtr: '_',
+    escapeTemplateTags: ['{{', '}}']
+  }, config || {});
+
+  if (this.config.escapeTemplateTags) {
+    this.escaper = new escaping.TemplateTagsEscaper(
+      this.config.escapeTemplateTags[0],
+      this.config.escapeTemplateTags[1]);
+  }
+
+  this.bem = require('./utils/bem')(this.config, this.escaper);
+}
+
+BEML.prototype.run = function($node) {
+
+  /**
+   * Block processing.
+   */
+
+  if ($node.attr('block') !== undefined) {
+    var block = this.bem.buildSelector({
+      block: $node.attr('block')
+    });
+
+    $node.data('block', $node.attr('block'));
+    $node.removeAttr('block');
+
+    if (!$node.attr('elem')) {
+      $node.addClass(block);
+    }
+  }
+  else {
+    if ($node.parent()) {
+      var block = $node.parent().data('block');
+      $node.data('block', block);
+    }
+  }
+
+  /**
+   * Element processing.
+   */
+
+  if ($node.attr('elem') !== undefined) {
+    var elem = this.bem.buildSelector({
+      block: $node.data('block'),
+      elem: $node.attr('elem')
+    });
+
+    $node.data('elem', $node.attr('elem'));
+    $node.removeAttr('elem');
+    $node.addClass(elem);
+  }
+
+  /**
+   * Modifier processing.
+   */
+
+  if ($node.attr('mod') !== undefined) {
+    var modAttr = this.escapeTemplateTags($node.attr('mod'));
+    mods = ajson.parse(modAttr);
+
+    this.bem.setClasses($node, {
+      block: $node.data('block'),
+      elem: $node.data('elem'),
+      mod: mods
+    });
+
+    $node.data('mod', $node.attr('mod'));
+    $node.removeAttr('mod');
+  }
+
+  /**
+   * Mix processing.
+   */
+
+  if ($node.attr('mix') !== undefined) {
+    var mixAttr = this.escapeTemplateTags($node.attr('mix'));
+    var mixes = ajson.parse(mixAttr);
+
+    if (Array.isArray(mixes)) {
+      var that = this;
+      mixes.forEach(function(mix) {
+        that.bem.setClasses($node, mix);
+      });
+    } else {
+      this.bem.setClasses($node, mixes);
+    }
+
+    $node.removeAttr('mix');
+  }
+
+  $node[0].attribs = sortAttrs($node[0].attribs);
+};
+
+BEML.prototype.escapeTemplateTags = function(value) {
+  if (this.escaper) {
+    return this.escaper.encode(value);
+  }
+  return value;
 }
 
 function sortAttrs(attrs) {
@@ -21,83 +124,5 @@ function sortAttrs(attrs) {
 
   return attrs;
 }
-
-BEML.prototype.run = function($this) {
-
-  /**
-   * Block processing.
-   */
-
-  if ($this.attr('block') !== undefined) {
-    var block = this.bem.buildSelector({
-      block: $this.attr('block')
-    });
-
-    $this.data('block', $this.attr('block'));
-    $this.removeAttr('block');
-
-    if (!$this.attr('elem')) {
-      $this.addClass(block);
-    }
-  }
-  else {
-    if ($this.parent()) {
-      var block = $this.parent().data('block');
-      $this.data('block', block);
-    }
-  }
-
-  /**
-   * Element processing.
-   */
-
-  if ($this.attr('elem') !== undefined) {
-    var elem = this.bem.buildSelector({
-      block: $this.data('block'),
-      elem: $this.attr('elem')
-    });
-
-    $this.data('elem', $this.attr('elem'));
-    $this.removeAttr('elem');
-    $this.addClass(elem);
-  }
-
-  /**
-   * Modifier processing.
-   */
-
-  if ($this.attr('mod') !== undefined) {
-    this.bem.setClasses($this, {
-      block: $this.data('block'),
-      elem: $this.data('elem'),
-      mod: ajson.parse($this.attr('mod'))
-    });
-
-    $this.data('mod', $this.attr('mod'));
-    $this.removeAttr('mod');
-  }
-
-  /**
-   * Mix processing.
-   */
-
-  if ($this.attr('mix') !== undefined) {
-    var mixes = ajson.parse($this.attr('mix'));
-
-    if (Array.isArray(mixes)) {
-      var that = this;
-      mixes.forEach(function(mix) {
-        that.bem.setClasses($this, mix);
-      });
-    } else {
-      this.bem.setClasses($this, mixes);
-    }
-
-    $this.removeAttr('mix');
-  }
-
-  $this[0].attribs = sortAttrs($this[0].attribs);
-
-};
 
 module.exports = BEML;

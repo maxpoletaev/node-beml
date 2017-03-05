@@ -1,0 +1,11 @@
+<html>
+  <body>
+    <div block="b-block" mod="{{ mod_a }}, {{ mod_b }}, c: {{ mod_c }}"></div>
+    <div block="b-block" mix="block: {{ mix_block }}, elem: {{ mix_elem }}"></div>
+    <div block="b-block" mod="view_{{order.status | statusClass}}"></div>
+
+    <div block="{{ block }}" mod="{{ mod_key }}: {{ mod_val }}, {{ mod_bool }}">
+      <div elem="{{ elem }}"></div>
+    </div>
+  </body>
+</html>

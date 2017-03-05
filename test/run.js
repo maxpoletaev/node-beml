@@ -15,6 +15,6 @@ cases.forEach(function(test) {
 
   it(test, function() {
     var html = beml(tmpl.toString());
-    assert.equal(html, result+'');
+    assert.equal(html, result.toString());
   });
 });
