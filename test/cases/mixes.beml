@@ -4,6 +4,12 @@
       <div elem="elem"></div>
     </div>
 
+    <table block="block-a">
+      <tr block="block-b">
+        <th elem="elem" mix="block:block-a, elem:elem-with-dash"></th>
+      </tr>
+    </table>
+
     <div block="b-block" elem="elem" mix="block: b-mix"></div>
     <div block="b-block" mix="block: b-mix, elem: elem"></div>
     <div block="b-block" mix="block: b-mix, elem: elem, mod: {key:val}"></div>
