@@ -4,6 +4,7 @@ var util = require('util');
 
 function run(html, config) {
   var $ = cheerio.load(html, {
+    xmlMode: true,
     decodeEntities: false
   });
 
